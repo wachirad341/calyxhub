@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Share & Earn - CalyxHub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header><h1>Share & Earn 🚀</h1></header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="viral.html">Share</a>
+</nav>
+
+<section>
+
+<h2>📢 Share This Website</h2>
+
+<button onclick="shareWhatsApp()">Share on WhatsApp</button>
+<button onclick="shareTwitter()">Share on Twitter</button>
+
+<p id="counter">Shares: 0</p>
+
+</section>
+
+<script>
+let count=0;
+
+function updateCount(){
+count++;
+document.getElementById("counter").innerText="Shares: "+count;
+}
+
+function shareWhatsApp(){
+let url=window.location.href;
+window.open("https://wa.me/?text="+url);
+updateCount();
+}
+
+function shareTwitter(){
+let url=window.location.href;
+window.open("https://twitter.com/intent/tweet?url="+url);
+updateCount();
+}
+</script>
+
+</body>
+</html>

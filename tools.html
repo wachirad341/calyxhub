@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Advanced Tools - CalyxHub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header><h1>Advanced Free Tools</h1></header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="tools.html">Tools</a>
+</nav>
+
+<section>
+
+<!-- PASSWORD GENERATOR -->
+<h2>🔐 Password Generator</h2>
+<button onclick="generatePassword()">Generate</button>
+<p id="password"></p>
+
+<!-- WORD COUNTER -->
+<h2>📝 Word Counter</h2>
+<textarea id="text" placeholder="Type or paste text..."></textarea>
+<p id="count"></p>
+
+<!-- BMI CALCULATOR -->
+<h2>⚖️ BMI Calculator</h2>
+<input type="number" id="weight" placeholder="Weight (kg)">
+<input type="number" id="height" placeholder="Height (m)">
+<button onclick="calculateBMI()">Calculate</button>
+<p id="bmi"></p>
+
+<!-- AGE CALCULATOR -->
+<h2>🎂 Age Calculator</h2>
+<input type="date" id="dob">
+<button onclick="calculateAge()">Calculate Age</button>
+<p id="age"></p>
+
+<!-- INTERNET TIPS -->
+<h2>📶 Internet Speed Tips</h2>
+<button onclick="speedTips()">Show Tips</button>
+<p id="tips"></p>
+
+</section>
+
+<script>
+function generatePassword(){
+let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+let pass="";
+for(let i=0;i<10;i++){
+pass+=chars.charAt(Math.floor(Math.random()*chars.length));
+}
+document.getElementById("password").innerText=pass;
+}
+
+document.getElementById("text").addEventListener("input", function(){
+let words=this.value.trim().split(/\\s+/).length;
+document.getElementById("count").innerText="Words: "+words;
+});
+
+function calculateBMI(){
+let w=document.getElementById("weight").value;
+let h=document.getElementById("height").value;
+let bmi=w/(h*h);
+document.getElementById("bmi").innerText="BMI: "+bmi.toFixed(2);
+}
+
+function calculateAge(){
+let dob=new Date(document.getElementById("dob").value);
+let diff=Date.now()-dob.getTime();
+let age=new Date(diff);
+document.getElementById("age").innerText="Age: "+Math.abs(age.getUTCFullYear()-1970);
+}
+<div class="ad">
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2321106369654250"
+     data-ad-slot="9876543210"
+     data-ad-format="auto"></ins>
+</div>
+
+function speedTips(){
+document.getElementById("tips").innerText="Restart router, reduce devices, use fiber or 4G.";
+}
+</script>
+
+</body>
+</html>

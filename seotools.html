@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SEO Tools - CalyxHub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header><h1>SEO Tools</h1></header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="seotools.html">SEO Tools</a>
+</nav>
+
+<section>
+
+<h2>🔍 Keyword Generator</h2>
+<input type="text" id="keyword" placeholder="Enter keyword">
+<button onclick="generateKeywords()">Generate</button>
+
+<ul id="results"></ul>
+
+</section>
+
+<script>
+function generateKeywords(){
+let keyword=document.getElementById("keyword").value;
+let results=document.getElementById("results");
+
+results.innerHTML="";
+
+let variations=[
+keyword + " tips",
+"best " + keyword,
+keyword + " guide",
+"free " + keyword,
+keyword + " tools",
+keyword + " for beginners"
+];
+
+variations.forEach(k=>{
+results.innerHTML += "<li>"+k+"</li>";
+});
+}
+</script>
+
+</body>
+</html>

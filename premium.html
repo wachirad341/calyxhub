@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Premium Tools - CalyxHub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header><h1>Premium Tools 💎</h1></header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="dashboard.html">Dashboard</a>
+</nav>
+
+<section id="content"></section>
+
+<script>
+let premium=localStorage.getItem("premium");
+
+let content=document.getElementById("content");
+
+if(premium === "true"){
+content.innerHTML = `
+<h2>🔥 Premium Features</h2>
+<ul>
+<li>Advanced File Tools</li>
+<li>SEO Analyzer</li>
+<li>Fast Processing Tools</li>
+</ul>
+`;
+}else{
+content.innerHTML = `
+<h2>Upgrade Required</h2>
+<p>You need premium access to use this feature.</p>
+<button onclick="upgrade()">Upgrade</button>
+`;
+}
+
+function upgrade(){
+localStorage.setItem("premium","true");
+alert("You are now a premium user!");
+location.reload();
+}
+</script>
+
+</body>
+</html>

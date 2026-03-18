@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - CalyxHub</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBrzV8QRMGZ0gUeMHiuDjqWQ6V5FajfG74",
+  authDomain: "calyxhub-b2906.firebaseapp.com",
+  projectId: "calyxhub-b2906",
+  storageBucket: "calyxhub-b2906.firebasestorage.app",
+  messagingSenderId: "561644122235",
+  appId: "1:561644122235:web:6e341ac40516f1f51fb2de"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  // REGISTER USER
+  function registerUser(email, password) {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        alert("Registration successful!");
+        db.collection("users").doc(userCredential.user.uid).set({
+          email: email,
+          premium: false
+        });
+        window.location.href = "dashboard.html";
+      })
+      .catch(error => alert(error.message));
+  }
+
+  // LOGIN USER
+  function loginUser(email, password) {
+    auth.signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        window.location.href = "dashboard.html";
+      })
+      .catch(error => alert(error.message));
+  }
+</script>
+</head>
+
+<body>
+
+<header>
+  <h1>CalyxHub Login/Register</h1>
+</header>
+
+<section>
+  <h2>Register</h2>
+  <input type="email" id="regEmail" placeholder="Email">
+  <input type="password" id="regPass" placeholder="Password">
+  <button onclick="registerUser(document.getElementById('regEmail').value, document.getElementById('regPass').value)">Register</button>
+
+  <h2>Login</h2>
+  <input type="email" id="loginEmail" placeholder="Email">
+  <input type="password" id="loginPass" placeholder="Password">
+  <button onclick="loginUser(document.getElementById('loginEmail').value, document.getElementById('loginPass').value)">Login</button>
+</section>
+
+</body>
+</html>
