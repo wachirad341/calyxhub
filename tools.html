@@ -1,91 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Advanced Tools - CalyxHub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CalyxHub Tools</title>
 <link rel="stylesheet" href="style.css">
+
+<!-- AdSense meta -->
+<meta name="google-site-verification" content="YOUR_ADSENSE_CODE_HERE">
 </head>
-
 <body>
+<header>
+  <h1>CalyxHub Tech Tools</h1>
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="tools.html">Tools</a> |
+    <a href="login.html">Login</a> |
+    <a href="dashboard.html">Dashboard</a> |
+    <a href="about.html">About</a> |
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-<header><h1>Advanced Free Tools</h1></header>
+<main>
+  <section>
+    <h2>BMI Calculator</h2>
+    <input type="number" id="weight" placeholder="Weight in kg">
+    <input type="number" id="height" placeholder="Height in cm">
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <p id="bmiResult"></p>
+  </section>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="tools.html">Tools</a>
-</nav>
+  <section>
+    <h2>Age Calculator</h2>
+    <input type="date" id="dob">
+    <button onclick="calculateAge()">Calculate Age</button>
+    <p id="ageResult"></p>
+  </section>
 
-<section>
+  <section>
+    <h2>Word Counter</h2>
+    <textarea id="textInput" placeholder="Type your text here..." rows="4"></textarea>
+    <button onclick="countWords()">Count Words</button>
+    <p id="wordCount"></p>
+  </section>
 
-<!-- PASSWORD GENERATOR -->
-<h2>🔐 Password Generator</h2>
-<button onclick="generatePassword()">Generate</button>
-<p id="password"></p>
+  <section>
+    <h2>Password Generator</h2>
+    <button onclick="generatePassword()">Generate Password</button>
+    <p id="passwordResult"></p>
+  </section>
+</main>
 
-<!-- WORD COUNTER -->
-<h2>📝 Word Counter</h2>
-<textarea id="text" placeholder="Type or paste text..."></textarea>
-<p id="count"></p>
-
-<!-- BMI CALCULATOR -->
-<h2>⚖️ BMI Calculator</h2>
-<input type="number" id="weight" placeholder="Weight (kg)">
-<input type="number" id="height" placeholder="Height (m)">
-<button onclick="calculateBMI()">Calculate</button>
-<p id="bmi"></p>
-
-<!-- AGE CALCULATOR -->
-<h2>🎂 Age Calculator</h2>
-<input type="date" id="dob">
-<button onclick="calculateAge()">Calculate Age</button>
-<p id="age"></p>
-
-<!-- INTERNET TIPS -->
-<h2>📶 Internet Speed Tips</h2>
-<button onclick="speedTips()">Show Tips</button>
-<p id="tips"></p>
-
-</section>
+<footer>
+  <p>&copy; 2026 CalyxHub. All rights reserved.</p>
+</footer>
 
 <script>
-function generatePassword(){
-let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-let pass="";
-for(let i=0;i<10;i++){
-pass+=chars.charAt(Math.floor(Math.random()*chars.length));
-}
-document.getElementById("password").innerText=pass;
-}
+  // BMI Calculator
+  function calculateBMI() {
+    const weight = parseFloat(document.getElementById("weight").value);
+    const height = parseFloat(document.getElementById("height").value);
+    if (!weight || !height) return alert("Enter weight and height!");
+    const heightMeters = height / 100;
+    const bmi = (weight / (heightMeters * heightMeters)).toFixed(2);
+    document.getElementById("bmiResult").innerText = Your BMI is ${bmi};
+  }
 
-document.getElementById("text").addEventListener("input", function(){
-let words=this.value.trim().split(/\\s+/).length;
-document.getElementById("count").innerText="Words: "+words;
-});
+  // Age Calculator
+  function calculateAge() {
+    const dob = document.getElementById("dob").value;
+    if (!dob) return alert("Select your birth date!");
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) age--;
+    document.getElementById("ageResult").innerText = You are ${age} years old.;
+  }
 
-function calculateBMI(){
-let w=document.getElementById("weight").value;
-let h=document.getElementById("height").value;
-let bmi=w/(h*h);
-document.getElementById("bmi").innerText="BMI: "+bmi.toFixed(2);
-}
+  // Word Counter
+  function countWords() {
+    const text = document.getElementById("textInput").value.trim();
+    if (!text) {
+      document.getElementById("wordCount").innerText = "0 words";
+      return;
+    }
+    const words = text.split(/\s+/);
+    document.getElementById("wordCount").innerText = Word count: ${words.length};
+  }
 
-function calculateAge(){
-let dob=new Date(document.getElementById("dob").value);
-let diff=Date.now()-dob.getTime();
-let age=new Date(diff);
-document.getElementById("age").innerText="Age: "+Math.abs(age.getUTCFullYear()-1970);
-}
-<div class="ad">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2321106369654250"
-     data-ad-slot="9876543210"
-     data-ad-format="auto"></ins>
-</div>
-
-function speedTips(){
-document.getElementById("tips").innerText="Restart router, reduce devices, use fiber or 4G.";
-}
+  // Password Generator
+  function generatePassword() {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    let password = "";
+    const length = 12;
+    for (let i = 0; i < length; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById("passwordResult").innerText = Generated Password: ${password};
+  }
 </script>
-
 </body>
 </html>
